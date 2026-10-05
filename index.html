@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrevista retrasos aduana</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#1d2a3a}
+header{background:#123b63;color:#fff;padding:36px 22px}
+.container{max-width:1120px;margin:auto}
+h1{margin:0 0 8px;font-size:34px}
+.subtitle{opacity:.9;line-height:1.5}
+main{padding:24px 22px 48px}
+.note{background:#fff4d8;border-left:5px solid #f0a000;padding:14px 16px;border-radius:10px;margin-bottom:20px;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:#fff;border:1px solid #dfe7f0;border-radius:14px;padding:18px;box-shadow:0 4px 12px rgba(20,40,70,.05)}
+.metric{font-size:30px;font-weight:700;color:#123b63}
+.label{font-size:13px;color:#6c7785;margin-top:5px}
+.section{margin-top:18px}
+.bar-row{display:grid;grid-template-columns:155px 1fr 45px;gap:10px;align-items:center;margin:9px 0}
+.track{height:14px;background:#edf1f6;border-radius:999px;overflow:hidden}
+.fill{height:100%;background:#4f83d1;border-radius:999px}
+.fill.veracruz{background:#d64c4c}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+select,input{padding:9px 10px;border:1px solid #cfd8e3;border-radius:8px;background:#fff}
+.table-wrap{max-height:480px;overflow:auto;border:1px solid #dfe7f0;border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:9px;border-bottom:1px solid #e4eaf1;text-align:left;vertical-align:top}
+th{background:#f7f9fc;position:sticky;top:0}
+.badge{display:inline-block;padding:3px 7px;border-radius:999px;font-size:11px;font-weight:700}
+.yes{background:#ffe3e3;color:#9b2626}
+.no{background:#e5f5ed;color:#166c4d}
+.two{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
+.quote{background:#f8fbff;border:1px solid #dfe7f0;border-radius:10px;padding:12px;margin:8px 0;line-height:1.45}
+.small{font-size:12px;color:#6c7785}
+footer{font-size:12px;color:#6c7785;line-height:1.6;margin-top:24px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.bar-row{grid-template-columns:110px 1fr 35px}h1{font-size:28px}}
+</style>
+</head>
+<body>
+<header>
+<div class="container">
+<h1>Entrevista retrasos aduana</h1>
+<div class="subtitle">Análisis de comunicación operativa entre la sucursal Progreso de Grupo Aduanal del Valle y otros puntos de cobertura aduanera.</div>
+</div>
+</header>
+<main class="container">
+
+<div class="grid">
+<div class="card"><div class="metric">59/70</div><div class="label">reportan retrasos (84.3%)</div></div>
+<div class="card"><div class="metric">47/70</div><div class="label">detectan falta de seguimiento (67.1%)</div></div>
+<div class="card"><div class="metric">50/70</div><div class="label">prefieren centralizar la comunicación (71.4%)</div></div>
+<div class="card"><div class="metric">3.1/5</div><div class="label">claridad promedio percibida</div></div>
+</div>
+
+<section class="section card">
+<h2>1. Punto con mayores dificultades de comunicación</h2>
+<p>Los participantes seleccionaron el punto donde se concentran mayores dificultades de comunicación o seguimiento. Veracruz presenta la mayor incidencia dentro de los resultados analizados.</p>
+<div id="aduanaBars"></div>
+</section>
+
+<section class="section two">
+<div class="card">
+<h2>2. Canales utilizados</h2>
+<p>Distribución del principal medio utilizado para dar seguimiento a las operaciones.</p>
+<div id="channelBars"></div>
+</div>
+<div class="card">
+<h2>3. Hallazgos principales</h2>
+<div class="quote"><strong>Retrasos:</strong> 84.3% reportó retrasos en respuestas o actualizaciones.</div>
+<div class="quote"><strong>Centralización:</strong> 71.4% considera conveniente concentrar el seguimiento en un canal principal.</div>
+<div class="quote"><strong>Veracruz:</strong> 22 de 70 participantes la señaló como el punto con mayores dificultades de comunicación.</div>
+<div class="quote"><strong>Claridad:</strong> la valoración media fue de 3.1 sobre 5.</div>
+</div>
+</section>
+
+<section class="section card">
+<h2>4. Cuestionario aplicado</h2>
+<ol>
+<li>¿En qué área trabaja actualmente?</li>
+<li>¿Con qué aduana o punto de cobertura ha percibido mayores dificultades de comunicación?</li>
+<li>¿Ha experimentado retrasos en respuestas o actualizaciones durante una operación?</li>
+<li>¿Cuál es el principal canal utilizado para el seguimiento?</li>
+<li>En una escala del 1 al 5, ¿qué tan clara considera la información recibida?</li>
+<li>¿Ha detectado falta de seguimiento entre las áreas involucradas?</li>
+<li>¿Considera conveniente centralizar la comunicación en un canal o sistema principal?</li>
+<li>Comentario u observación sobre el proceso de comunicación.</li>
+</ol>
+</section>
+
+<section class="section card">
+<h2>5. Base de 70 respuestas</h2>
+<div class="controls">
+<select id="fAduana"><option value="">Todas las aduanas</option></select>
+<select id="fArea"><option value="">Todas las áreas</option></select>
+<input id="search" placeholder="Buscar comentario">
+</div>
+<div class="small" id="rowCount"></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>#</th><th>Área</th><th>Aduana</th><th>Retrasos</th><th>Canal</th><th>Claridad</th><th>Falta seguimiento</th><th>Centralizar</th><th>Comentario</th></tr></thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+</section>
+
+<section class="section card">
+<h2>6. Interpretación para el capítulo 2</h2>
+<p>Los resultados muestran que la problemática de comunicación entre Progreso y otras aduanas se relaciona con tiempos de respuesta, uso de múltiples canales, seguimiento entre áreas y claridad de la información. Veracruz concentra la mayor cantidad de menciones como punto con dificultades de comunicación, por lo que puede considerarse un foco prioritario dentro del análisis académico.</p>
+</section>
+
+<footer>
+<strong>Fuente para selección de ubicaciones:</strong> Grupo Aduanal del Valle, sección “Cobertura”. La empresa publica cobertura en Nuevo Laredo, Lázaro Cárdenas, Veracruz, Aeropuerto CDMX, Progreso, Mérida, Cancún, Puerto Morelos, Dos Bocas, Cd. del Carmen, AIFA y Manzanillo. Los resultados corresponden a un ejercicio académico con datos hipotéticos.
+</footer>
+</main>
+
+<script>
+const data = [{"id": 1, "area": "Operaciones", "aduana": "Nuevo Laredo", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 4, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "Se requieren varias confirmaciones para conocer el estatus de la operación."}, {"id": 2, "area": "Coordinación", "aduana": "Cancún", "retrasos": "No", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "La información llega por distintos medios y puede duplicarse."}, {"id": 3, "area": "Operaciones", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "La documentación puede tardar en llegar completa."}, {"id": 4, "area": "Integración", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "El seguimiento mejora cuando existe un responsable definido."}, {"id": 5, "area": "Operaciones", "aduana": "Nuevo Laredo", "retrasos": "Sí", "canal": "Portal/Sistema interno", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "La documentación puede tardar en llegar completa."}, {"id": 6, "area": "Tráfico", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Llamada telefónica", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "La comunicación funciona mejor cuando se usa el sistema interno."}, {"id": 7, "area": "Integración", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 2, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "La documentación puede tardar en llegar completa."}, {"id": 8, "area": "Operaciones", "aduana": "Nuevo Laredo", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 5, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "Se necesita un formato estándar para reportar avances."}, {"id": 9, "area": "Operaciones", "aduana": "Mérida", "retrasos": "No", "canal": "WhatsApp", "claridad": 2, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "Sería útil centralizar actualizaciones en un solo canal."}, {"id": 10, "area": "Despacho", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Correo electrónico", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "Se requieren varias confirmaciones para conocer el estatus de la operación."}, {"id": 11, "area": "Despacho", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Portal/Sistema interno", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "La documentación puede tardar en llegar completa."}, {"id": 12, "area": "Integración", "aduana": "Cancún", "retrasos": "Sí", "canal": "WhatsApp", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "Se requieren varias confirmaciones para conocer el estatus de la operación."}, {"id": 13, "area": "Operaciones", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Correo electrónico", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "La comunicación funciona mejor cuando se usa el sistema interno."}, {"id": 14, "area": "Operaciones", "aduana": "Aeropuerto CDMX", "retrasos": "Sí", "canal": "Correo electrónico", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "Sería útil centralizar actualizaciones en un solo canal."}, {"id": 15, "area": "Atención al cliente", "aduana": "Cd. del Carmen", "retrasos": "No", "canal": "Portal/Sistema interno", "claridad": 2, "falta_seguimiento": "No", "centralizar": "No", "comentario": "El seguimiento mejora cuando existe un responsable definido."}, {"id": 16, "area": "Tráfico", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "La información llega por distintos medios y puede duplicarse."}, {"id": 17, "area": "Tráfico", "aduana": "Nuevo Laredo", "retrasos": "Sí", "canal": "Correo electrónico", "claridad": 3, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "El seguimiento mejora cuando existe un responsable definido."}, {"id": 18, "area": "Tráfico", "aduana": "Lázaro Cárdenas", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "Se necesita un formato estándar para reportar avances."}, {"id": 19, "area": "Integración", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Correo electrónico", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "La información llega por distintos medios y puede duplicarse."}, {"id": 20, "area": "Despacho", "aduana": "AIFA", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "A veces no queda claro quién debe confirmar el siguiente paso."}, {"id": 21, "area": "Operaciones", "aduana": "Veracruz", "retrasos": "Sí", "canal": "WhatsApp", "claridad": 3, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "A veces no queda claro quién debe confirmar el siguiente paso."}, {"id": 22, "area": "Operaciones", "aduana": "Dos Bocas", "retrasos": "Sí", "canal": "Portal/Sistema interno", "claridad": 2, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "La documentación puede tardar en llegar completa."}, {"id": 23, "area": "Tráfico", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Llamada telefónica", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "La documentación puede tardar en llegar completa."}, {"id": 24, "area": "Operaciones", "aduana": "Lázaro Cárdenas", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "A veces no queda claro quién debe confirmar el siguiente paso."}, {"id": 25, "area": "Atención al cliente", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "El tiempo de respuesta aumenta cuando intervienen varias personas."}, {"id": 26, "area": "Integración", "aduana": "AIFA", "retrasos": "Sí", "canal": "Correo electrónico", "claridad": 3, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "Sería útil centralizar actualizaciones en un solo canal."}, {"id": 27, "area": "Despacho", "aduana": "Manzanillo", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 2, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "La documentación puede tardar en llegar completa."}, {"id": 28, "area": "Coordinación", "aduana": "Nuevo Laredo", "retrasos": "No", "canal": "Combinación de canales", "claridad": 4, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "La documentación puede tardar en llegar completa."}, {"id": 29, "area": "Integración", "aduana": "Progreso", "retrasos": "Sí", "canal": "Correo electrónico", "claridad": 1, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "El tiempo de respuesta aumenta cuando intervienen varias personas."}, {"id": 30, "area": "Tráfico", "aduana": "AIFA", "retrasos": "Sí", "canal": "Llamada telefónica", "claridad": 4, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "Se necesita un formato estándar para reportar avances."}, {"id": 31, "area": "Tráfico", "aduana": "Lázaro Cárdenas", "retrasos": "Sí", "canal": "Llamada telefónica", "claridad": 1, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "Se necesita un formato estándar para reportar avances."}, {"id": 32, "area": "Despacho", "aduana": "Lázaro Cárdenas", "retrasos": "Sí", "canal": "WhatsApp", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "A veces no queda claro quién debe confirmar el siguiente paso."}, {"id": 33, "area": "Operaciones", "aduana": "Lázaro Cárdenas", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 5, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "La documentación puede tardar en llegar completa."}, {"id": 34, "area": "Despacho", "aduana": "Cancún", "retrasos": "No", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "La comunicación funciona mejor cuando se usa el sistema interno."}, {"id": 35, "area": "Operaciones", "aduana": "Aeropuerto CDMX", "retrasos": "No", "canal": "WhatsApp", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "Se requieren varias confirmaciones para conocer el estatus de la operación."}, {"id": 36, "area": "Atención al cliente", "aduana": "Manzanillo", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "A veces no queda claro quién debe confirmar el siguiente paso."}, {"id": 37, "area": "Operaciones", "aduana": "Nuevo Laredo", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "A veces no queda claro quién debe confirmar el siguiente paso."}, {"id": 38, "area": "Operaciones", "aduana": "Aeropuerto CDMX", "retrasos": "No", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "Sería útil centralizar actualizaciones en un solo canal."}, {"id": 39, "area": "Coordinación", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Llamada telefónica", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "Se necesita un formato estándar para reportar avances."}, {"id": 40, "area": "Atención al cliente", "aduana": "Dos Bocas", "retrasos": "No", "canal": "Correo electrónico", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "Se necesita un formato estándar para reportar avances."}, {"id": 41, "area": "Coordinación", "aduana": "Veracruz", "retrasos": "Sí", "canal": "WhatsApp", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "El seguimiento mejora cuando existe un responsable definido."}, {"id": 42, "area": "Despacho", "aduana": "Puerto Morelos", "retrasos": "Sí", "canal": "Correo electrónico", "claridad": 5, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "Los cambios de estatus no siempre se comunican de inmediato."}, {"id": 43, "area": "Tráfico", "aduana": "Veracruz", "retrasos": "Sí", "canal": "WhatsApp", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "Los cambios de estatus no siempre se comunican de inmediato."}, {"id": 44, "area": "Atención al cliente", "aduana": "Cd. del Carmen", "retrasos": "Sí", "canal": "Portal/Sistema interno", "claridad": 2, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "Sería útil centralizar actualizaciones en un solo canal."}, {"id": 45, "area": "Integración", "aduana": "Aeropuerto CDMX", "retrasos": "Sí", "canal": "WhatsApp", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "La comunicación funciona mejor cuando se usa el sistema interno."}, {"id": 46, "area": "Integración", "aduana": "Dos Bocas", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 4, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "Los cambios de estatus no siempre se comunican de inmediato."}, {"id": 47, "area": "Operaciones", "aduana": "Nuevo Laredo", "retrasos": "Sí", "canal": "Portal/Sistema interno", "claridad": 3, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "El tiempo de respuesta aumenta cuando intervienen varias personas."}, {"id": 48, "area": "Coordinación", "aduana": "Nuevo Laredo", "retrasos": "Sí", "canal": "Correo electrónico", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "La información llega por distintos medios y puede duplicarse."}, {"id": 49, "area": "Despacho", "aduana": "Aeropuerto CDMX", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "A veces no queda claro quién debe confirmar el siguiente paso."}, {"id": 50, "area": "Integración", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Portal/Sistema interno", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "Se necesita un formato estándar para reportar avances."}, {"id": 51, "area": "Tráfico", "aduana": "Puerto Morelos", "retrasos": "No", "canal": "WhatsApp", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "El seguimiento mejora cuando existe un responsable definido."}, {"id": 52, "area": "Coordinación", "aduana": "Lázaro Cárdenas", "retrasos": "Sí", "canal": "Llamada telefónica", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "La información llega por distintos medios y puede duplicarse."}, {"id": 53, "area": "Coordinación", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 2, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "A veces no queda claro quién debe confirmar el siguiente paso."}, {"id": 54, "area": "Atención al cliente", "aduana": "Manzanillo", "retrasos": "No", "canal": "Portal/Sistema interno", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "Sería útil centralizar actualizaciones en un solo canal."}, {"id": 55, "area": "Operaciones", "aduana": "Lázaro Cárdenas", "retrasos": "Sí", "canal": "Llamada telefónica", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "Sería útil centralizar actualizaciones en un solo canal."}, {"id": 56, "area": "Operaciones", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Llamada telefónica", "claridad": 2, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "Se requieren varias confirmaciones para conocer el estatus de la operación."}, {"id": 57, "area": "Tráfico", "aduana": "Manzanillo", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 1, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "Se requieren varias confirmaciones para conocer el estatus de la operación."}, {"id": 58, "area": "Integración", "aduana": "Manzanillo", "retrasos": "Sí", "canal": "WhatsApp", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "Sería útil centralizar actualizaciones en un solo canal."}, {"id": 59, "area": "Operaciones", "aduana": "Manzanillo", "retrasos": "Sí", "canal": "Correo electrónico", "claridad": 2, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "Los cambios de estatus no siempre se comunican de inmediato."}, {"id": 60, "area": "Tráfico", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "La información llega por distintos medios y puede duplicarse."}, {"id": 61, "area": "Atención al cliente", "aduana": "Manzanillo", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "Los cambios de estatus no siempre se comunican de inmediato."}, {"id": 62, "area": "Integración", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "Se necesita un formato estándar para reportar avances."}, {"id": 63, "area": "Integración", "aduana": "Nuevo Laredo", "retrasos": "Sí", "canal": "WhatsApp", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "Sería útil centralizar actualizaciones en un solo canal."}, {"id": 64, "area": "Operaciones", "aduana": "AIFA", "retrasos": "Sí", "canal": "WhatsApp", "claridad": 3, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "La documentación puede tardar en llegar completa."}, {"id": 65, "area": "Operaciones", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "La documentación puede tardar en llegar completa."}, {"id": 66, "area": "Tráfico", "aduana": "AIFA", "retrasos": "Sí", "canal": "Correo electrónico", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "No", "comentario": "Sería útil centralizar actualizaciones en un solo canal."}, {"id": 67, "area": "Tráfico", "aduana": "Dos Bocas", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 4, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "El tiempo de respuesta aumenta cuando intervienen varias personas."}, {"id": 68, "area": "Tráfico", "aduana": "Lázaro Cárdenas", "retrasos": "Sí", "canal": "WhatsApp", "claridad": 3, "falta_seguimiento": "No", "centralizar": "Sí", "comentario": "Se requieren varias confirmaciones para conocer el estatus de la operación."}, {"id": 69, "area": "Operaciones", "aduana": "AIFA", "retrasos": "No", "canal": "WhatsApp", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "La información llega por distintos medios y puede duplicarse."}, {"id": 70, "area": "Operaciones", "aduana": "Veracruz", "retrasos": "Sí", "canal": "Combinación de canales", "claridad": 3, "falta_seguimiento": "Sí", "centralizar": "Sí", "comentario": "Sería útil centralizar actualizaciones en un solo canal."}];
+const aduanaCounts = {"Veracruz": 22, "Nuevo Laredo": 9, "Lázaro Cárdenas": 8, "Manzanillo": 7, "AIFA": 6, "Aeropuerto CDMX": 5, "Dos Bocas": 4, "Cancún": 3, "Cd. del Carmen": 2, "Puerto Morelos": 2, "Mérida": 1, "Progreso": 1};
+const channelCounts = {"Combinación de canales": 28, "WhatsApp": 14, "Correo electrónico": 12, "Portal/Sistema interno": 8, "Llamada telefónica": 8};
+
+function bars(id,obj){
+  const max=Math.max(...Object.values(obj));
+  document.getElementById(id).innerHTML=Object.entries(obj).map(([k,v])=>`
+  <div class="bar-row">
+    <div>${k}</div>
+    <div class="track"><div class="fill ${k==='Veracruz'?'veracruz':''}" style="width:${(v/max)*100}%"></div></div>
+    <div><strong>${v}</strong></div>
+  </div>`).join('');
+}
+bars('aduanaBars',aduanaCounts);
+bars('channelBars',channelCounts);
+
+const fA=document.getElementById('fAduana');
+const fR=document.getElementById('fArea');
+const s=document.getElementById('search');
+[...new Set(data.map(x=>x.aduana))].sort().forEach(x=>fA.add(new Option(x,x)));
+[...new Set(data.map(x=>x.area))].sort().forEach(x=>fR.add(new Option(x,x)));
+
+function render(){
+  const q=s.value.toLowerCase();
+  const rows=data.filter(x=>(!fA.value||x.aduana===fA.value)&&(!fR.value||x.area===fR.value)&&(!q||x.comentario.toLowerCase().includes(q)));
+  document.getElementById('rowCount').textContent=`Mostrando ${rows.length} de ${data.length} respuestas`;
+  document.getElementById('tbody').innerHTML=rows.map(x=>`
+  <tr>
+    <td>${x.id}</td><td>${x.area}</td><td>${x.aduana}</td>
+    <td><span class="badge ${x.retrasos==='Sí'?'yes':'no'}">${x.retrasos}</span></td>
+    <td>${x.canal}</td><td>${x.claridad}/5</td><td>${x.falta_seguimiento}</td><td>${x.centralizar}</td><td>${x.comentario}</td>
+  </tr>`).join('');
+}
+fA.onchange=render; fR.onchange=render; s.oninput=render; render();
+</script>
+</body>
+</html>
